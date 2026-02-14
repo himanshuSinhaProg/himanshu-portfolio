@@ -28,6 +28,52 @@ app.get("/api/test-email", async (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
+app.use(express.json());
+
+app.post("/api/interest", async (req, res) => {
+  const { firstName, lastName, email, street, city, pincode, country } = req.body;
+
+  const adminEmail = "himanshusnh63@gmail.com";
+
+  try {
+    // 1) Email to customer
+    await sgMail.send({
+      to: email,
+      from: adminEmail,
+      subject: "We received your interest",
+      text:
+`Hi ${firstName},
+
+Thanks for your interest in owning this photograph.
+
+To proceed, please complete payment via Interac e-transfer to:
+${adminEmail}
+
+After payment confirmation, we’ll reply with the licensed image.
+
+Regards,
+Himanshu`
+    });
+
+    // 2) Email to admin
+    await sgMail.send({
+      to: adminEmail,
+      from: adminEmail,
+      subject: "New photo interest received",
+      text:
+`New interest received:
+
+Name: ${firstName} ${lastName}
+Email: ${email}
+Address: ${street}, ${city}, ${pincode}, ${country}`
+    });
+
+    res.json({ message: "Submitted! Check your email for next steps." });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Something failed while sending emails." });
+  }
+});
 
 app.listen(port, () => {
   console.log("Server running on port " + port);
