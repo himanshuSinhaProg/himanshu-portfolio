@@ -67,8 +67,3 @@ Frontend (HTML form)
 * Admin upload panel (Azure Blob Storage)
 * Replace manual transfer with Stripe integration
 
----
-
-If you want a slightly more “engineering resume” style version instead, tell me — I’ll format it like a production SaaS build log.
-
-You’re building this properly.
