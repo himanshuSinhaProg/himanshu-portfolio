@@ -4,7 +4,7 @@
 - Cleaned repository structure
 - Validated CI/CD pipeline (GitHub → Azure)
 - Implemented Cities image gallery
-- Confirmed static asset serving
+- Confirmed static asset serving(tested)
 
 
 Perfect — this is exactly how professionals build momentum: document progress.
@@ -13,43 +13,20 @@ Here’s a clean, well-written README update you can paste:
 
 ---
 
-## 🚀 Development Log – Email Workflow Integration
+###  Feb 13, 2026
 
-### 📅 Date: [Feb 13, 2026]
+- Created SendGrid account and generated API key
+- Configured SENDGRID_API_KEY as secure environment variable in Azure
+- Installed @sendgrid/mail package
+- Implemented test email endpoint to validate integration
+- Created interest.html form for photo inquiries
+- Updated cities.html to link “Express Interest” buttons to the form
+- Implemented backend /api/interest route to send confirmation email to customer and notification email to admin
+- Verified full end-to-end flow:
 
-### ✅ Completed Today
+   
+FLOW : Form submission → Azure backend → SendGrid → Email delivery
 
-* Integrated **SendGrid email service** with Azure App Service
-* Configured secure environment variable:
-
-  * `SENDGRID_API_KEY` (stored in Azure, not in repo)
-* Installed and configured `@sendgrid/mail` package
-* Implemented backend API routes:
-
-  * `GET /api/test-email` → Verified SendGrid integration
-  * `POST /api/interest` → Handles form submissions
-* Built `interest.html` form page for photo inquiries
-* Connected frontend form to backend using `fetch` POST request
-* Implemented dual email workflow:
-
-  * 📧 Confirmation email sent to customer
-  * 📧 Notification email sent to admin
-* Verified full end-to-end flow:
-
-  * Form submission → Azure backend → SendGrid → Email delivery
-
----
-
-### 🧠 Key Concepts Implemented
-
-* Express middleware (`express.json()`)
-* Environment variable handling in Azure
-* Secure API key management
-* Full-stack request/response cycle
-* Production email integration
-* CI/CD deployment validation (GitHub → Azure)
-
----
 
 ### 🏗 Current Architecture
 
