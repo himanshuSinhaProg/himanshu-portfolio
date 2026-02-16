@@ -137,9 +137,8 @@ app.post("/api/interest", async (req, res) => {
       subject: "We received your interest",
       text: `Hi ${firstName},
 
-Thanks for your interest in owning this photograph.
+Thanks for your interest in owning a photograph.
 
-Photo: ${photoName || "Not specified"}
 
 To proceed, please complete payment via Interac e-transfer to:
 ${adminEmail}
