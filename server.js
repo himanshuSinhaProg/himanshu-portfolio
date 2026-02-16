@@ -143,7 +143,7 @@ Photo: ${photoName || "Not specified"}
 
 To proceed, please complete payment via Interac e-transfer to:
 ${adminEmail}
-
+Please transfer $10 through interac on the email .
 After payment confirmation, we’ll reply with the licensed image.
 
 Regards,
