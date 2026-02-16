@@ -3,53 +3,210 @@
 <head>
   <meta charset="UTF-8" />
   <title>Express Interest</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial;
+      background:#0b0b0b;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+    }
+
+    .card{
+      background:#111;
+      padding:40px;
+      border-radius:18px;
+      width:100%;
+      max-width:520px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.6);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    h2{
+      margin-top:0;
+      text-align:center;
+      margin-bottom:30px;
+      letter-spacing:0.5px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      margin-bottom:18px;
+    }
+
+    label{
+      font-size:13px;
+      margin-bottom:6px;
+      opacity:0.8;
+    }
+
+    input{
+      padding:12px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:#1a1a1a;
+      color:white;
+      font-size:14px;
+      transition:0.2s;
+    }
+
+    input:focus{
+      outline:none;
+      border-color:white;
+      box-shadow:0 0 0 2px rgba(255,255,255,0.2);
+    }
+
+    .row{
+      display:flex;
+      gap:12px;
+    }
+
+    .row .field{
+      flex:1;
+    }
+
+    button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      font-weight:bold;
+      font-size:15px;
+      background:white;
+      color:black;
+      cursor:pointer;
+      transition:0.2s;
+      margin-top:10px;
+    }
+
+    button:hover{
+      background:#e5e5e5;
+      transform:translateY(-1px);
+    }
+
+    #msg{
+      text-align:center;
+      margin-top:20px;
+      font-size:14px;
+      min-height:20px;
+    }
+
+    .success{
+      color:#4CAF50;
+    }
+
+    .error{
+      color:#ff6b6b;
+    }
+
+    .back{
+      text-align:center;
+      margin-top:20px;
+      font-size:13px;
+      opacity:0.7;
+    }
+
+    .back a{
+      color:white;
+      text-decoration:none;
+    }
+
+    .back a:hover{
+      text-decoration:underline;
+    }
+  </style>
 </head>
-<body style="font-family: Arial; max-width: 600px; margin: 40px auto;">
 
-  <h2>Express Interest</h2>
+<body>
 
-  <form id="interestForm">
-    <label>First Name</label><br>
-    <input name="firstName" required><br><br>
+  <div class="card">
+    <h2>Express Interest</h2>
 
-    <label>Last Name</label><br>
-    <input name="lastName" required><br><br>
+    <form id="interestForm">
 
-    <label>Email</label><br>
-    <input type="email" name="email" required><br><br>
+      <div class="row">
+        <div class="field">
+          <label>First Name</label>
+          <input name="firstName" required>
+        </div>
 
-    <label>Street Address</label><br>
-    <input name="street" required><br><br>
+        <div class="field">
+          <label>Last Name</label>
+          <input name="lastName" required>
+        </div>
+      </div>
 
-    <label>City</label><br>
-    <input name="city" required><br><br>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" name="email" required>
+      </div>
 
-    <label>Pincode</label><br>
-    <input name="pincode" required><br><br>
+      <div class="field">
+        <label>Street Address</label>
+        <input name="street" required>
+      </div>
 
-    <label>Country</label><br>
-    <input name="country" required><br><br>
+      <div class="row">
+        <div class="field">
+          <label>City</label>
+          <input name="city" required>
+        </div>
 
-    <button type="submit">Submit</button>
-  </form>
+        <div class="field">
+          <label>Pincode</label>
+          <input name="pincode" required>
+        </div>
+      </div>
 
-  <p id="msg"></p>
+      <div class="field">
+        <label>Country</label>
+        <input name="country" required>
+      </div>
+
+      <button type="submit">Submit Request</button>
+
+    </form>
+
+    <p id="msg"></p>
+
+    <div class="back">
+      <a href="/cities.html">← Back to Gallery</a>
+    </div>
+  </div>
 
   <script>
     document.getElementById("interestForm").addEventListener("submit", async (e) => {
       e.preventDefault();
 
+      const msg = document.getElementById("msg");
+      msg.textContent = "Submitting...";
+      msg.className = "";
+
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
 
-      const resp = await fetch("/api/interest", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
+      try {
+        const resp = await fetch("/api/interest", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
 
-      const result = await resp.json();
-      document.getElementById("msg").innerText = result.message;
+        const result = await resp.json();
+        msg.textContent = result.message;
+        msg.className = "success";
+
+        e.target.reset();
+
+      } catch (err) {
+        msg.textContent = "Something went wrong. Please try again.";
+        msg.className = "error";
+      }
     });
   </script>
 
