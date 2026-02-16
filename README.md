@@ -44,3 +44,5 @@ Frontend (HTML form)
 * Admin upload panel (Azure Blob Storage)
 * Replace manual transfer with Stripe integration
 
+Feb 16 - Product Launch
+
