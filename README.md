@@ -1,15 +1,12 @@
 ## Portfolio Website – Build Log
 
-### Feb 12, 2026
+### Feb 08, 2026
 - Cleaned repository structure
 - Validated CI/CD pipeline (GitHub → Azure)
 - Implemented Cities image gallery
 - Confirmed static asset serving(tested)
 
 
-Perfect — this is exactly how professionals build momentum: document progress.
-
-Here’s a clean, well-written README update you can paste:
 
 ---
 
@@ -43,4 +40,6 @@ Frontend (HTML form)
 * Store submissions in persistent storage
 * Admin upload panel (Azure Blob Storage)
 * Replace manual transfer with Stripe integration
+
+Feb 16 - Product Launch
 
